@@ -1,35 +1,95 @@
-import {Fragment} from "react";
-import { Link, useNavigate } from "react-router"
+import { Fragment, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useUserAuth } from "../context/UserAuthContext";
 
 const LoginPage = () => {
-    const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const { logIn, googleSignIn } = useUserAuth();
+  const navigate = useNavigate();
 
-    return (
-        <Fragment>
-            <div className="bg-base-200" onClick={() => navigate("/")}>
-               <span className="text-xl rounded p-4 bg-amber-50 text-black">Back to welcome</span>
-            </div>
-            
-            <div className="hero bg-base-200 min-h-screen">
-          <div className="hero-content flex-col lg:flex-col lg:w-full">
-            <h1 className="text-2xl">Login Form</h1>
-            <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-              <div className="card-body">
-                <fieldset className="fieldset">
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      await logIn(email, password);
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const handleGoogleSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      await googleSignIn();
+      navigate("/dashboard");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  return (
+    <Fragment>
+      <div className="bg-base-200" onClick={() => navigate("/")}>
+        <span className="text-xl rounded p-4 bg-amber-50 text-black">
+          Back to welcome
+        </span>
+      </div>
+
+      <div className="hero bg-base-200 min-h-screen">
+        <div className="hero-content flex-col lg:flex-col lg:w-full">
+          <h1 className="text-2xl">Login Form</h1>
+
+          {error && <div className="alert alert-error">{error}</div>}
+
+          <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+            <div className="card-body">
+              <fieldset className="fieldset">
+                <form onSubmit={handleSubmit}>
                   <label className="label">Email</label>
-                  <input type="email" className="input" placeholder="Email" />
-                  <label className="label">Password</label>
-                  <input type="password" className="input" placeholder="Password" />
-                  
-                  <button className="btn btn-neutral mt-4">Login</button>
-                  <div>Don't have an account?<Link to={"/register"} className="text-blue link link-hover"> Register</Link></div>
-                </fieldset>
-              </div>
+                  <input
+                    type="email"
+                    className="input"
+                    placeholder="Email"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <label className="label mt-2">Password</label>
+                  <input
+                    type="password"
+                    className="input"
+                    placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+
+                  <button className="btn btn-neutral mt-4 w-full" type="submit">
+                    Login
+                  </button>
+                  <hr className="py-4"/>
+                  <div>
+                    <button className="btn btn-outline w-full mt-2 mb-2" onClick={handleGoogleSignIn}>
+                      Sign in with Google
+                    </button>
+                  </div>
+                  <div className="mt-4">
+                    Don't have an account?
+                    <Link
+                      to={"/register"}
+                      className="text-blue link link-hover"
+                    >
+                      {" "}
+                      Register
+                    </Link>
+                  </div>
+                </form>
+              </fieldset>
             </div>
           </div>
         </div>
-        </Fragment>
-    )
-}
+      </div>
+    </Fragment>
+  );
+};
 
 export default LoginPage;

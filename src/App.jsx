@@ -1,6 +1,6 @@
 import { Fragment } from "react"
 import './App.css'
-import { Routes, Route } from 'react-router'
+import { Routes, Route } from 'react-router-dom'
 import WelcomePage from './pages/WelcomePage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'

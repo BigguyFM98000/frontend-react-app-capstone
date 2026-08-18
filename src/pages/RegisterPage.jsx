@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 import { useUserAuth } from "../context/UserAuthContext.jsx";
 
 const RegisterPage = () => {
@@ -23,7 +23,7 @@ const RegisterPage = () => {
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-col lg:w-full">
-        {error && <Alert variant="danger">{error}</Alert>}
+        {error && <div className="alert alert-error">{error}</div>}
         <h1 className="text-2xl">Register Form</h1>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <div className="card-body">

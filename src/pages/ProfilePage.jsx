@@ -1,9 +1,13 @@
-
+import Navbar from "../components/Navbar";
+import { Fragment } from "react";
 
 const ProfilePage = () => {
-    return (
-        <h1>Profile Page</h1>
-    )
-}
+  return (
+    <Fragment>
+      <Navbar />
+      <h1>Profile Page</h1>
+    </Fragment>
+  );
+};
 
 export default ProfilePage;
