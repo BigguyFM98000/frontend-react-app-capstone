@@ -10,6 +10,7 @@ import UpdateExpensePage from "./pages/UpdateExpensePage"
 import HelpPage from "./pages/HelpPage"
 import NotFoundPage from "./pages/NotFoundPage"
 import ProfilePage from "./pages/ProfilePage"
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
 
@@ -19,11 +20,15 @@ function App() {
         <Route path='/' element={<WelcomePage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/register' element={<RegisterPage />} />
-        <Route path='/dashboard' element={<DashboardPage />} />
-        <Route path='/add' element={<AddExpensePage />} />
-        <Route path='/update' element={<UpdateExpensePage />} />
-        <Route path='/profile' element={<ProfilePage />} />
-        <Route path='/help' element={<HelpPage />} />
+        <Route path='/dashboard' element={<ProtectedRoute>
+            <DashboardPage />
+          </ProtectedRoute>} />
+        <Route path='/add' element={<ProtectedRoute><AddExpensePage /></ProtectedRoute>} />
+        <Route path='/update' element={<ProtectedRoute>
+            <UpdateExpensePage />
+          </ProtectedRoute>} />
+        <Route path='/profile' element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+        <Route path='/help' element={<ProtectedRoute><HelpPage /></ProtectedRoute>} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </Fragment>
