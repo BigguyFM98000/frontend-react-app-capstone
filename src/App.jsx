@@ -11,6 +11,7 @@ import HelpPage from "./pages/HelpPage"
 import NotFoundPage from "./pages/NotFoundPage"
 import ProfilePage from "./pages/ProfilePage"
 import ProtectedRoute from "./components/ProtectedRoute";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route path='/' element={<WelcomePage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/register' element={<RegisterPage />} />
+        <Route path="/reset" element={<ForgotPasswordPage/>} />
         <Route path='/dashboard' element={<ProtectedRoute>
             <DashboardPage />
           </ProtectedRoute>} />

@@ -30,6 +30,10 @@ const LoginPage = () => {
     }
   };
 
+  const handleReset = () => {
+
+  }
+
   return (
     <Fragment>
       <div className="bg-base-200" onClick={() => navigate("/")}>
@@ -48,18 +52,21 @@ const LoginPage = () => {
             <div className="card-body">
               <fieldset className="fieldset">
                 <form onSubmit={handleSubmit}>
-                  <label className="label">Email</label>
+                  <label className="label text-lg">Email</label>
                   <input
                     type="email"
-                    className="input"
-                    placeholder="Email"
+                    className="input w-full"
+                    placeholder="Enter your email address"
                     onChange={(e) => setEmail(e.target.value)}
                   />
-                  <label className="label mt-2">Password</label>
+                  <div className="mt-2 flex justify-between items-center">
+                    <label className="label text-lg">Password</label><Link to={"/reset"} >Forgot Password?</Link>
+                  </div>
+              
                   <input
                     type="password"
-                    className="input"
-                    placeholder="Password"
+                    className="input w-full"
+                    placeholder="Enter your password"
                     onChange={(e) => setPassword(e.target.value)}
                   />
 
@@ -72,7 +79,7 @@ const LoginPage = () => {
                       Sign in with Google
                     </button>
                   </div>
-                  <div className="mt-4">
+                  <div className="mt-4 text-lg">
                     Don't have an account?
                     <Link
                       to={"/register"}
