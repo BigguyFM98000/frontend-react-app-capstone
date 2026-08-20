@@ -23,10 +23,10 @@ const Navbar = () => {
       <div className="flex gap-2">
         
         <div>
-          <button className="btn btn-md sm:btn-lg md:btn-lg lg:btn-md xl:btn-md">Add Expense</button>
+          <button onClick={() => navigate("/add")} className="bg-green-600 btn btn-md sm:btn-lg md:btn-lg lg:btn-md xl:btn-md">Add Expense</button>
         </div>
         <div>
-          <button onClick={() => navigate("/help")} className="btn btn-md sm:btn-lg md:btn-lg lg:btn-md xl:btn-md">Get Help</button>
+          <button onClick={() => navigate("/help")} className="bg-white text-black btn btn-md sm:btn-lg md:btn-lg lg:btn-md xl:btn-md">Get Help</button>
         </div>
         <div className="dropdown dropdown-end">
           <div

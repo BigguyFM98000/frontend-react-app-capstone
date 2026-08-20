@@ -5,6 +5,7 @@ import { useUserAuth } from "../context/UserAuthContext.jsx";
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [password, setPassword] = useState("");
   const { signUp } = useUserAuth();
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ const RegisterPage = () => {
     setError("");
     try {
       await signUp(email, password);
+      setSuccess("User registered successfully");
       navigate("/login");
     } catch (err) {
       setError(err.message);
@@ -23,8 +25,10 @@ const RegisterPage = () => {
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-col lg:w-full">
-        {error && <div className="alert alert-error">{error}</div>}
+        
         <h1 className="text-2xl">Register Form</h1>
+        {error && <div className="alert alert-error">{error}</div>}
+        {success && <div className="alert alert-success">{success}</div>}
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <div className="card-body">
             <fieldset className="fieldset">
