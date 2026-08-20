@@ -16,11 +16,18 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar bg-base-800 shadow-sm w-full">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">ExpenseTracker</a>
+        <Link to={"/dashboard"} className="btn btn-ghost text-xl">ExpenseTracker</Link>
       </div>
       <div className="flex gap-2">
+        
+        <div>
+          <button className="btn btn-md sm:btn-lg md:btn-lg lg:btn-md xl:btn-md">Add Expense</button>
+        </div>
+        <div>
+          <button onClick={() => navigate("/help")} className="btn btn-md sm:btn-lg md:btn-lg lg:btn-md xl:btn-md">Get Help</button>
+        </div>
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}
@@ -33,7 +40,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-emerald-800 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
               <Link className="justify-between" to="/profile">
