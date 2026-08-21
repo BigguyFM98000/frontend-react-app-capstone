@@ -26,7 +26,7 @@ function App() {
             <DashboardPage />
           </ProtectedRoute>} />
         <Route path='/add' element={<ProtectedRoute><AddExpensePage /></ProtectedRoute>} />
-        <Route path='/update' element={<ProtectedRoute>
+        <Route path='/update/:id' element={<ProtectedRoute>
             <UpdateExpensePage />
           </ProtectedRoute>} />
         <Route path='/profile' element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
