@@ -21,6 +21,7 @@ const AddExpensePage = () => {
       setError("User not signed in, please sign in");
       console.log("User not signed in");
       await LogOut();
+      return;
     }
 
     try {
