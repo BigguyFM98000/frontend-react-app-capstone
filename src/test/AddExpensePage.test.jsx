@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import AddExpensePage from "./AddExpensePage";
+import AddExpensePage from "../pages/AddExpensePage";
 import { useUserAuth } from "../context/UserAuthContext";
 import { addDoc, collection } from "firebase/firestore";
 import { auth, database } from "../firebase";

@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { MemoryRouter } from "react-router-dom";
-import RegisterPage from "./RegisterPage";
+import RegisterPage from "../pages/RegisterPage.jsx";
 import { useUserAuth } from "../context/UserAuthContext.jsx";
 
 const navigate = vi.fn();

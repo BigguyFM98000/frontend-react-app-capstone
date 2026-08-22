@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import ProfilePage from "./ProfilePage";
+import ProfilePage from "../pages/ProfilePage";
 import { useUserAuth } from "../context/UserAuthContext";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../firebase";

@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { MemoryRouter } from "react-router-dom";
-import ForgotPasswordPage from "./ForgotPasswordPage";
+import ForgotPasswordPage from "../pages/ForgotPasswordPage";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../firebase";
 

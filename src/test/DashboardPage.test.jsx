@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import DashboardPage from "./DashboardPage";
+import DashboardPage from "../pages/DashboardPage";
 import { useUserAuth } from "../context/UserAuthContext";
 import {
   deleteDoc,

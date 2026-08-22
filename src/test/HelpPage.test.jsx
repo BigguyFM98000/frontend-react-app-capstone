@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import HelpPage from "./HelpPage";
+import HelpPage from "../pages/HelpPage";
 import emailjs from "@emailjs/browser";
 
 vi.mock("../components/Navbar", () => ({
