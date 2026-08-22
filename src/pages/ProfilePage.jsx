@@ -59,11 +59,11 @@ const ProfilePage = () => {
     <Fragment>
       <Navbar />
 
-      <div className="card w-full h-auto flex flex-col justify-center items-center bg-base-100 shadow-sm mt-16">
+      <div className="card w-auto h-auto flex flex-col justify-center items-center bg-base-100 shadow-sm mt-16">
         <figure>
           <div className="avatar">
             <div className="ring-primary ring-offset-base-100 w-24 rounded-full ring-2 ring-offset-2">
-              <img alt="Tailwind-CSS-Avatar-component" src={defaultAvatar} />
+              <img alt="Tailwind-CSS-Avatar-component" src={user.photoURL || defaultAvatar} />
             </div>
           </div>
         </figure>
@@ -103,7 +103,7 @@ const ProfilePage = () => {
               <input
                 type="text"
                 id="email"
-                className="input"
+                className="input w-full"
                 placeholder="Enter your email"
                 {...register("email")}
                 readOnly
@@ -111,7 +111,7 @@ const ProfilePage = () => {
               />
             </fieldset>
 
-            <div className="card-actions justify-end">
+            <div className="card-actions justify-end mt-4">
               <button
                 onClick={() => navigate("/dashboard")}
                 className="btn bg-white text-black"

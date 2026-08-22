@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import { useNavigate, useParams } from "react-router-dom";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { database } from "../firebase";
+import { useUserAuth } from "../context/UserAuthContext";
 
 const UpdateExpensePage = () => {
   const [error, setError] = useState("");
@@ -13,14 +14,24 @@ const UpdateExpensePage = () => {
   const [updatedAmount, setUpdatedAmount] = useState("");
   const [updatedCategory, setUpdatedCategory] = useState("");
   const [updatedDate, setUpdatedDate] = useState("");
+  const { user } = useUserAuth();
 
   useEffect(() =>{
     const getExpense = async () => {
       try {
+        if (!user?.uid) {
+          return;
+        }
+
         const expenseRef = doc(database, "Expenses", id);
         const expenseSnapshot = await getDoc(expenseRef);
         if(expenseSnapshot.exists()){
           const expenseData = {id: expenseSnapshot.id, ...expenseSnapshot.data()};
+          if (expenseData.userId !== user.uid) {
+            navigate("/dashboard", { replace: true });
+            return;
+          }
+
           setExpense(expenseData);
           setUpdatedAmount(expenseData.amount ?? "");
           setUpdatedCategory(expenseData.category ?? "");
@@ -31,10 +42,10 @@ const UpdateExpensePage = () => {
       }
     }
     getExpense();
-  }, [id])
+  }, [id, navigate, user?.uid])
 
   if(!expense) {
-    return <h1><span className="loading loading-spinner loading-xl"></span></h1>
+    return <h1><span className="loading loading-spinner loading-xl">Loading...</span></h1>
   }
 
   const handleUpdate = async (event) => {

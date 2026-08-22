@@ -1,29 +1,43 @@
 import { Fragment, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { database } from "../firebase";
-import { getDocs, collection, doc, deleteDoc } from "firebase/firestore";
+import { getDocs, collection, doc, deleteDoc, query, where } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import { useUserAuth } from "../context/UserAuthContext";
 
 const DashboardPage = () => {
   const [expenses, setExpenses] = useState([]);
-  const value = collection(database, "Expenses");
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+  const { user } = useUserAuth();
 
   useEffect(() => {
     const getData = async () => {
+      setIsLoading(true);
+      if (!user?.uid) {
+        setExpenses([]);
+        setIsLoading(false);
+        return;
+      }
+
       try {
-        const response = await getDocs(value);
+        const expensesQuery = query(
+          collection(database, "Expenses"),
+          where("userId", "==", user.uid),
+        );
+        const response = await getDocs(expensesQuery);
 
         setExpenses(
           response.docs.map((doc) => ({ ...doc.data(), id: doc.id })),
         );
-        console.log(expenses);
       } catch (error) {
         console.log(error.message);
+      } finally {
+        setIsLoading(false);
       }
     };
     getData();
-  }, [expenses]);
+  }, [user?.uid]);
 
   const handleDelete = async (expenseId) => {
     const deleteValue = doc(database, "Expenses", expenseId);
@@ -39,7 +53,11 @@ const DashboardPage = () => {
       </h2>
       <div className="p-2">
         <ul className="list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 bg-base-200 shadow-md mb-2 overflow-y-scroll">
-          {expenses.map((expense) => (
+          {isLoading || expenses.length === 0 ? (
+            <li className="list-row w-full p-4 text-center">
+              No expenses added. Click Add Expense to add an expense
+            </li>
+          ) : expenses.map((expense) => (
             <li
               key={expense.id}
               className="list-row w-full p-4 flex flex-row justify-between items-center border-4 border-solid border-black bg-white"
