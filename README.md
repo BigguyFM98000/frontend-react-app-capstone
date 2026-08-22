@@ -2,9 +2,23 @@
 [https://github.com/BigguyFM98000/frontend-react-app-capstone](https://github.com/BigguyFM98000/frontend-react-app-capstone)
 
 ## Setup & Run
+## Example .env file required to run the project
+-VITE_APIKEY= 
+-VITE_AUTHDOMAIN=
+-VITE_PROJECTID= 
+-VITE_STORAGEBUCKET= 
+-VITE_MESSAGINGSENDERID= 
+-VITE_APPID=
+1. (NB)Follow the firebase(https://firebase.google.com/), click "go to console" having signed in to your google account. Create a project and also create a web app associated with the project to get the above environment variables generated for you.
+
+-VITE_SERVICE_ID = 
+-VITE_TEMPLATE_ID = 
+-VITE_PUBLIC_KEY = 
+2. (NB)Follow the emailjs(https://www.emailjs.com/docs/tutorial/overview/) for instructions on how to add an email service, create an email template and prepare an auto-reply template as this action will provide you with the environment variable above.
+
 Install the dependencies and start the development server with one command:
 
-npm install && npm run dev
+3. npm install && npm run dev
 
 Then open [http://localhost:5173](http://localhost:5173) in your browser.
 
@@ -56,24 +70,24 @@ Then open [http://localhost:5173](http://localhost:5173) in your browser.
 - A new styling framework such a Material UI to give the application a cool interface.
 
 ## Testing Evidence
-Test Files 1 passed (10)
-      Tests 9 passed (16)
-   Start at 13:18:44
-stdout | src/test/UpdateExpensePage.test.jsx > UpdateExpensePage > displays an error when updating fails
-Error while updating:  Unable to update expense
+-Test Files 1 passed (10)
+ -     Tests 9 passed (16)
+ -  Start at 13:18:44
+-stdout | src/test/UpdateExpensePage.test.jsx > UpdateExpensePage > displays an error when -updating fails
+-Error while updating:  Unable to update expense
 
- ✓ src/test/UpdateExpensePage.test.jsx (4 tests) 869ms
-     ✓ loads an owned expense into the update form  569ms
+ -✓ src/test/UpdateExpensePage.test.jsx (4 tests) 869ms
+ -    ✓ loads an owned expense into the update form  569ms
 
- ❯ src/test/DashboardPage.test.jsx 6/6
- ❯ src/test/LoginPage.test.jsx 2/6
- ❯ src/test/UpdateExpensePage.test.jsx 4/4
+ -❯ src/test/DashboardPage.test.jsx 6/6
+- ❯ src/test/LoginPage.test.jsx 2/6
+ -❯ src/test/UpdateExpensePage.test.jsx 4/4
 
- Test Files 2 passed (10)
-      Tests 12 passed (16)
-   Start at 13:18:44
-stdout | src/test/LoginPage.test.jsx > LoginPage > displays a Google sign-in error without navigating
-Google sign-in failed
+- Test Files 2 passed (10)
+-      Tests 12 passed (16)
+-   Start at 13:18:44
+-stdout | src/test/LoginPage.test.jsx > LoginPage > displays a Google sign-in error without -navigating
+-Google sign-in failed
 
 ## Performance & accessibility audit
 1. Lighthouse Scores
